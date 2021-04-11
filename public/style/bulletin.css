@@ -1,0 +1,47 @@
+html {
+    font-family:arial;
+    font-size: 18px;
+  }
+  body{
+      text-align: center;
+  }
+
+  td {
+    border: 1px solid #726E6D;
+    padding: 15px;
+  }
+
+  thead{
+    font-weight:bold;
+    text-align:center;
+    background: #625D5D;
+    color:white;
+  }
+
+  table {
+    border-collapse: collapse;
+    margin: auto;
+  }
+
+  .footer {
+    text-align:right;
+    font-weight:bold;
+  }
+
+  tbody >tr:nth-child(odd) {
+    background: #D1D0CE;
+  }
+  button{
+      margin-top: 15px;
+      width: 200px;
+      height: 40px;
+      text-align :center;
+      background-color: rgb(58, 241, 58);
+      outline: none;
+      border:none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+
+
+  }

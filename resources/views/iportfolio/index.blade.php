@@ -405,59 +405,76 @@
           <p>Une note scolaire est une évaluation des travaux effectués par un élève. Une note peut être ... Le résultat est que les notes se répartiront selon le profil d'une courbe de ... Dans le système scolaire et les lycées, une moyenne de toutes les notes est faite</p>
         </div>
 
-        <div class="row">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prénom</th>
-                    <th scope="col">Math</th>
-                    <th scope="col">FR</th>
-                    <th scope="col">Ang</th>
-                    <th scope="col">SVT</th>
-                    <th scope="col">EPS</th>
-                    <th scope="col">HG</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
+        <div class="content">
+            <h3 class="text-center ">Les Notes </h3> <hr>
+            {{-- <a href="{{ route('posts.show', $post->id)) }}"> --}}
+              {{-- <h1 class="title">{{ $post ?? ''->title }}</h1> --}}
+              {{-- created_at->diffForHumans() , [$post ?? ''->slug]--}}
+            {{-- </a> --}}
+            <div class="row">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Math</th>
+                        <th scope="col">FR</th>
+                        <th scope="col">Ang</th>
+                        <th scope="col">SVT</th>
+                        <th scope="col">EPS</th>
+                        <th scope="col">HG</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
 
-      </div>
+                    <tbody>
+                        @foreach ($posts as $post)
+                      <tr>
+                        <th scope="row">{{ $post->id}}</th>
+                        <td>{{ $post->nom}}</td>
+                        <td>{{  $post->prenom}}</td>
+                        <td>{{  $post->maths }}</td>
+                        <td>{{  $post->fr }}</td>
+                        <td>{{  $post->ang }}</td>
+                        <td>{{  $post->svt }}</td>
+                        <td>{{  $post->eps }}</td>
+                        <td>{{  $post->hg }}</td>
+                        <td>
+                            <form method="post" action="{{ route('posts.destroy',$post->id) }}">
+                                @csrf
+                                 @method('delete')
+                                    <div class="field is-grouped">
+                                    <div class="control">
+                                        <a
+                                        href="{{ route('posts.edit',$post->id)}}"
+                                        class="button is-info is-outlined btn"
+                                        >
+                                        Modifier
+                                        </a>
+                                    </div>
+
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div class="control">
+                                        <button type="submit" class="button is-danger is-outlined">
+                                        Supprimer
+                                        </button>
+                                    </div>
+                                </td>
+                            </form>
+                      </tr>
+                      @endforeach
+                    </tbody>
+
+
+                  </table>
+            </div>
+
+          </div>
     </section><!-- End Services Section -->
 
 

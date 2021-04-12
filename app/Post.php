@@ -10,8 +10,8 @@ class Post extends Model
         'nom', 'prenom', 'maths', 'fr', 'ang', 'svt', 'eps', 'hg',
     ];
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 }

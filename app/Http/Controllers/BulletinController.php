@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Utilisateurs;
+use App\Post;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +17,8 @@ class BulletinController extends Controller
         return view('form.register');
     }
     public function summary(){
-        return view('partials.summary');
+        $post = Post::all();
+        return view('partials.summary', ['posts'=>$post]);
     }
     public function login(){
         return view('form.inscription');
@@ -60,6 +62,12 @@ class BulletinController extends Controller
          $user = Utilisateurs::where('email','=', $request->email)->first();
          if($user){
             if (Hash::check($request->password, $user->password)){
+                return view('iportfolio.index');
+            }
+            if($user = Utilisateurs::where('role','=','admin', $request->role)){
+                return view('iportfolio.inner-page');
+            }
+            elseif($user = Utilisateurs::where('role','=','superadmin', $request->role)){
                 return view('iportfolio.index');
             }
 

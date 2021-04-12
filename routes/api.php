@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+//route pour api test vidéo youtube
+Route::apiResource('notes','ApiPostController');
+Route::get('/notes/{note}','ApiPostController@show');

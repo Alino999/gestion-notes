@@ -17,7 +17,7 @@ use App\Http\Controllers\EleveController;
 |
 */
 
-Route::get('/', function () {
+Route::get('1/', function () {
     return view('welcome');
 });
 

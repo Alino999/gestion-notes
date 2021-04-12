@@ -15,6 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
+
         //Obtenez tous les messages, classés par ordre décroissant en premier
         $posts = Post::latest()->get();
 
@@ -60,7 +61,7 @@ class PostController extends Controller
         $post = Post::create($validated);
 
         //Redirigez l'utilisateur vers la publication créée avec une notification de réussite
-        return redirect(route('welcome', [$post->slug]))->with('notification', 'Post created!');
+        return back()->with('notification', 'Post created!');
     }
 
     /**
@@ -72,6 +73,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+        
         return view('partials.summary', compact('post'));
     }
 
@@ -84,7 +86,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         //
-        return view('posts.edit', compact('post'));
+        return view('post.edit', compact('post'));
     }
 
     /**
@@ -109,13 +111,13 @@ class PostController extends Controller
         ]);
 
         //Créer un slug à partir du titre
-        $validated['slug'] = Str::slug($validated['title'], '-');
+        //$validated['id'] = Str::id($validated['id'], '-');
 
         //Mettre à jour la publication avec des données validées
         $post->update($validated);
 
         //Redirigez les notes vers la publication créée avec une notification mise à jour
-        return redirect(route('partials.summary', [$post->slug]))->with('notification', 'Post updated!');
+        return back()->with('notification', 'Post updated!');
     }
 
     /**
@@ -130,6 +132,6 @@ class PostController extends Controller
         $post->delete();
 
         //Rediriger l'utilisateur avec une notification supprimée
-        return redirect(route('partials.summary'))->with('notification', '"' . $post->title .  '" deleted!');
+        return back()->with('notification', '"' . $post->id .  '" deleted!');
     }
 }
